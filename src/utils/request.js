@@ -15,6 +15,18 @@ const instance = axios.create({
   baseURL,
   timeout: 100000
 })
+/* instance实例的主要功能：
+    属性：
+    defaults: 包含 axios 的默认配置，例如 baseURL、timeout 等。
+    interceptors: 请求拦截器和响应拦截器，可以通过设置拦截器来在请求发起前或响应返回后执行一些操作。
+    （下方通过instance.interceptors.request.use设置拦截器
+    其中request是请求，response是响应）
+    方法：
+    request(config): 发送 HTTP 请求，返回一个 Promise 对象。
+    get(url, config): 发送 GET 请求。
+    post(url, data, config): 发送 POST 请求。
+    其他 HTTP 请求方法，如 put, delete, patch 等。
+*/
 
 // 配置请求拦截器，用于在每个请求发送前添加用户认证信息
 // 请求拦截器
@@ -34,15 +46,16 @@ instance.interceptors.request.use(
 
 // 配置响应拦截器，用于处理服务器返回的响应
 // 响应拦截器
+//
 instance.interceptors.response.use(
   (res) => {
-    // 如果响应码为0，表示成功，直接返回响应
+    // 后端返回0，表示成功，直接返回响应
     if (res.data.code === 0) {
       return res
     }
     // 否则，使用Element Plus的Message组件显示错误信息
     ElMessage({ message: res.data.message || '服务异常', type: 'error' })
-    // 拒绝请求并返回错误数据
+    // 拒绝请求并返回错误数据，若是res未携带错误信息，则返回服务异常
     return Promise.reject(res.data)
   },
   (err) => {

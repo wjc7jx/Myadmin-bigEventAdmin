@@ -6,8 +6,3 @@ pinia.use(persist)
 
 export default pinia
 export * from './modules/user'
-
-// import { useUserStore } from './modules/user'
-// export { useUserStore }
-// import { useCountStore } from './modules/counter'
-// export { useCountStore }

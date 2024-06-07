@@ -3,18 +3,32 @@ import { ref } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
 import { artGetChannelsService, artDelChannelService } from '../../api/article'
 import ChannelEdit from './components/ChannelEdit.vue'
+
+// 初始化文章分类列表的引用
 const channelList = ref([])
+// 初始化加载状态的引用
 const loading = ref(false)
+// 初始化对话框的引用
 const dialog = ref()
 
+/**
+ * 获取文章分类列表
+ * 异步加载文章分类数据，更新channelList
+ */
 const getChannelList = async () => {
   loading.value = true
   const res = await artGetChannelsService()
   channelList.value = res.data.data
   loading.value = false
 }
+// 初始化时调用获取列表方法
 getChannelList()
 
+//#region 删除
+/**
+ * @param {Object} row - 要删除的分类信息
+ * 弹出确认框后，调用删除服务，成功后刷新列表
+ */
 const onDelChannel = async (row) => {
   await ElMessageBox.confirm('你确认要删除该分类么', '温馨提示', {
     type: 'warning',
@@ -25,12 +39,28 @@ const onDelChannel = async (row) => {
   ElMessage.success('删除成功')
   getChannelList()
 }
+//#endregion
+
+//#region 编辑文章分类
+/**
+ * @param {Object} row - 要编辑的分类信息
+ * 打开对话框进行编辑
+ */
 const onEditChannel = (row) => {
   dialog.value.open(row)
 }
+//#endregion
+
+//#region 新增文章分类
 const onAddChannel = () => {
   dialog.value.open({})
 }
+//#endregion
+
+/**
+ * 新增或编辑分类成功后的回调
+ * 刷新分类列表
+ */
 const onSuccess = () => {
   getChannelList()
 }
@@ -47,7 +77,6 @@ const onSuccess = () => {
       <el-table-column prop="cate_name" label="分类名称"></el-table-column>
       <el-table-column prop="cate_alias" label="分类别名"></el-table-column>
       <el-table-column label="操作" width="150">
-        <!-- row 就是 channelList 的一项， $index 下标 -->
         <template #default="{ row, $index }">
           <el-button
             :icon="Edit"
@@ -65,7 +94,7 @@ const onSuccess = () => {
           ></el-button>
         </template>
       </el-table-column>
-
+      <!-- 数据为空处理 -->
       <template #empty>
         <el-empty description="没有数据"></el-empty>
       </template>

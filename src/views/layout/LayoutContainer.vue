@@ -8,39 +8,50 @@ import {
   EditPen,
   SwitchButton,
   CaretBottom
-} from '@element-plus/icons-vue'
+} from '@element-plus/icons-vue' //引入图标
 import avatar from '@/assets/default.png'
 import { useUserStore } from '@/stores'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+
+// 使用userStore钩子获取用户状态
 const userStore = useUserStore()
+// 使用vue-router的钩子函数，页面加载时执行
 const router = useRouter()
 
+// 页面加载时获取用户信息
 onMounted(() => {
   userStore.getUser()
 })
 
-const handleCommand = async (key) => {
-  if (key === 'logout') {
+/**
+ * 处理导航和退出登录的命令
+ * @param {string} command 参数为下拉菜单的commmand，若command为logout，则退出登录
+ */
+const handleCommand = async (command) => {
+  if (command === 'logout') {
+    // 确认退出登录操作
     // 退出操作
     await ElMessageBox.confirm('你确认要进行退出么', '温馨提示', {
       type: 'warning',
       confirmButtonText: '确认',
       cancelButtonText: '取消'
     })
-
+    // 退出登录逻辑
     // 清除本地的数据 (token + user信息)
     userStore.removeToken()
     userStore.setUser({})
     router.push('/login')
   } else {
+    // 导航到指定的用户相关页面
     // 跳转操作
-    router.push(`/user/${key}`)
+    router.push(`/user/${command}`)
   }
 }
 </script>
 
 <template>
+  <!-- 侧边栏菜单，基于路由的导航菜单 -->
   <!-- 
     el-menu 整个菜单组件
       :default-active="$route.path"  配置默认高亮的菜单项
@@ -93,6 +104,7 @@ const handleCommand = async (key) => {
     </el-aside>
     <el-container>
       <el-header>
+        <!-- 显示当前登录用户的姓名和操作下拉菜单 -->
         <div>
           黑马程序员：<strong>{{
             userStore.user.nickname || userStore.user.username
@@ -126,6 +138,7 @@ const handleCommand = async (key) => {
         </el-dropdown>
       </el-header>
       <el-main>
+        <!-- 页面主要内容区域，动态渲染路由视图 -->
         <router-view></router-view>
       </el-main>
       <el-footer></el-footer>
