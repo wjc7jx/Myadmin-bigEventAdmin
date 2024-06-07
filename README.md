@@ -15,7 +15,7 @@
 1. 克隆项目到本地:
 
 ```bash
-git clone https://github.com/your-username/big-event-backend.git
+[git clone https://github.com/your-username/big-event-backend.git](https://github.com/wearetogetherforever/Myadmin.git)
 ```
 
 2. 安装依赖:
@@ -53,7 +53,7 @@ big-event-backend
 ```
 
 **其他说明**
-使用账号
+**使用账号**
 账号：wjc001
 密码：123456
 
