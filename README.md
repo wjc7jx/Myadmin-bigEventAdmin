@@ -53,10 +53,10 @@ big-event-backend
 ```
 
 **其他说明**
-```使用账号
-账号：wjc001
-密码：123456```
+>使用账号
+>账号：wjc001
+>密码：123456
 
-- 项目使用了 ElementPlus 组件库进行 UI 界面开发，并使用 unplugin-vue-components 和 unplugin-auto-import 实现了 ElementPlus 的自动按需导入。
-- 项目使用了 pinia-plugin-persistedstate 插件实现了 Pinia 状态管理的持久化，将用户状态等信息存储到本地存储中。
-- 项目使用了 Vite 进行构建和打包，提供了高效的开发体验。
+>- 项目使用了 ElementPlus 组件库进行 UI 界面开发，并使用 unplugin-vue-components 和 unplugin-auto-import 实现了 ElementPlus 的自动按需导入。
+>- 项目使用了 pinia-plugin-persistedstate 插件实现了 Pinia 状态管理的持久化，将用户状态等信息存储到本地存储中。
+>- 项目使用了 Vite 进行构建和打包，提供了高效的开发体验。
