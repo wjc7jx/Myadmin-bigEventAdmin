@@ -15,7 +15,7 @@
 1. 克隆项目到本地:
 
 ```bash
-[git clone https://github.com/your-username/big-event-backend.git](https://github.com/wearetogetherforever/Myadmin.git)
+https://github.com/wearetogetherforever/Myadmin.git
 ```
 
 2. 安装依赖:
