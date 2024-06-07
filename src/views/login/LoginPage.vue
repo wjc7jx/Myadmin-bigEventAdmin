@@ -97,6 +97,7 @@ watch(isRegister, () => {
 
        el-form 整个表单组件
        el-form-item 表单的一行 （一个表单域）
+       el-input 表单元素（输入框）
     2. 校验相关
        (1) el-form => :model="ruleForm"      绑定的整个form的数据对象 { xxx, xxx, xxx }
        (2) el-form => :rules="rules"         绑定的整个rules规则对象  { xxx, xxx, xxx }
@@ -217,7 +218,7 @@ watch(isRegister, () => {
   background-color: #fff;
   .bg {
     background:
-      url('@/assets/logo2.png') no-repeat 60% center / 240px auto,
+      // url('@/assets/logo2.png') no-repeat 60% center / 240px auto,
       url('@/assets/login_bg.jpg') no-repeat center / cover;
     border-radius: 0 20px 20px 0;
   }
