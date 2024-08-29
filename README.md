@@ -15,7 +15,7 @@
 1. 克隆项目到本地:
 
 ```bash
-https://github.com/wearetogetherforever/Myadmin.git
+https://github.com/wjc7jx/Myadmin.git
 ```
 
 2. 安装依赖:
